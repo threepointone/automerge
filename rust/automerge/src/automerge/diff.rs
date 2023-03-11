@@ -402,7 +402,7 @@ fn observe_list_diff<'a, I: Iterator<Item = Patch<'a>>, O: OpObserver>(
         PatchState::Mark => {
             if let Some(mark) = marks.mark_or_unmark(patch.op(), index, &doc) {
                 if mark.is_null() {
-                    observer.unmark(doc, exid.clone(), mark.key(), mark.start, mark.end);
+                    observer.unmark(doc, exid.clone(), mark.name(), mark.start, mark.end);
                 } else {
                     observer.mark(doc, exid.clone(), Some(mark).into_iter());
                 }
@@ -471,7 +471,7 @@ fn observe_text_diff<'a, I: Iterator<Item = Patch<'a>>, O: OpObserver>(
         PatchState::Mark => {
             if let Some(mark) = marks.mark_or_unmark(patch.op(), index, &doc) {
                 if mark.is_null() {
-                    observer.unmark(doc, exid.clone(), mark.key(), mark.start, mark.end);
+                    observer.unmark(doc, exid.clone(), mark.name(), mark.start, mark.end);
                 } else {
                     observer.mark(doc, exid.clone(), Some(mark).into_iter());
                 }
